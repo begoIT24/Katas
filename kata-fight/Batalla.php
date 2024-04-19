@@ -7,50 +7,49 @@ class Batalla{
         $this -> lluitador1 = $lluitador1;
         $this -> lluitador2 = $lluitador2;
     }
+
+    public function lluitar(): void{
+        $nomAtacant = "";
+
+        while ($this->lluitador1->getVida() > 0 && $this->lluitador2->getVida() > 0) {
+            $atacant = $this->establirAtacant();   
+            $atacant === $this->lluitador1 ? $defensor = $this->lluitador2 : $defensor = $this->lluitador1; //establecemos $defensor
+
+            $atacantForsa = $atacant->getForsa();
+            $defensorDefensa = $defensor->getDefensa();
+            $dany = $atacantForsa - $defensorDefensa;
+            $defensorVida = $defensor->getVida() - $dany;
+            $defensor->setVida($defensorVida);
+
+            $nomAtacant = $atacant->getNom();
+            $nomDefensor = $defensor->getNom();
+
+            echo "$nomAtacant ataca a $nomDefensor causant un dany $dany \n";
+        }
+
+        $this->lluitador1->getVida() <= 0 ? $guanyador = $this->lluitador2 : $guanyador = $this->lluitador1;
+
+        $nomGuanyador = $guanyador->getNom();
+        
+        echo "\n El guanyador final de la batalla és: $nomGuanyador";
+    }
+
     public function establirAtacant(){
         $probab = rand(0,100);
         $forsa1 = $this -> lluitador1 -> getForsa();
         $forsa2 = $this -> lluitador2 -> getForsa();
 
         if ($forsa1 > $forsa2 && ($probab >= 0 && $probab <= 70)){
-            return $this -> lluitador1;
-        }else if ($forsa1 > $forsa2 && ($probab >= 71 && $probab <= 100)){
-            return $this -> lluitador2;
-        }
-        }
-
-        public function lluitar(){
-            $vidaPerdedor = 0;
-            
-            $this -> establirAtacant();
-
-
-        }
-    
-
-   /* public function lluitar(){  // falta tenir en compte probabilitat i completar llavors la condició d'empat en forsa
-        $vidaPerdedor = 0;
-        while ($this -> lluitador1 -> getVida() != 0 && $this -> lluitador2 -> getVida() != 0 ){
-            if ($this -> lluitador1 -> getForsa() > $this -> lluitador2 -> getForsa()) {
-                $vidaPerdedor = $this -> lluitador2 -> getVida() - ($this -> lluitador1 -> getForsa() - $this -> lluitador2 -> getDefensa());
-                $this -> lluitador2 -> setVida($vidaPerdedor);
-            } else if ($this -> lluitador2 -> getForsa() > $this -> lluitador1 -> getForsa()) {
-                $vidaPerdedor = $this -> lluitador1 -> getVida() - ($this -> lluitador2 -> getForsa() - $this -> lluitador1 -> getDefensa());
-                $this -> lluitador1 -> setVida($vidaPerdedor);
-            } else if ($this -> lluitador2 -> getForsa() == $this -> lluitador1 -> getForsa()){
-
-            }
-        }
-    } */
-
-    public function establirGuanyador(){
-        $nomGuanyador = "";
-        if ($this -> lluitador1 -> getVida() == 0) { 
-            $nomGuanyador = $this -> lluitador2 -> getNom();
-         } else if ($this -> lluitador2 -> getVida() == 0) {
-            $nomGuanyador =  $this -> lluitador1 -> getNom();
-         }
-         echo 'El guanyador del combat és: '. $nomGuanyador;
-    }
+            return $this->lluitador1;
+        } elseif ($forsa1 > $forsa2 && ($probab >= 71 && $probab <= 100)){
+            return $this->lluitador2;
+        } elseif ($forsa2 > $forsa1 && ($probab >= 0 && $probab <= 70)) {
+            return $this->lluitador2;
+        } elseif ($forsa2 > $forsa1 && ($probab >= 71 && $probab <= 100)) {
+            return $this->lluitador1;
+        } else {
+            return rand(0, 1) === 0 ? $this->lluitador1 : $this->lluitador2; // empate en fuerza: se elige uno al azar
+        }       
+    } 
 }
 

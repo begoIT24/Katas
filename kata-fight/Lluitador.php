@@ -3,14 +3,12 @@ class Lluitador{
     private string $nom;
     private int $vida = 10;
     private int $forsa;
-    
     private int $defensa;
 
-    public function __construct($nom, $vida, $forsa, $defensa){
-        $this -> nom;
-        $this -> vida;
-        $this -> forsa;
-        $this -> defensa;
+    public function __construct($nom, $forsa, $defensa){
+        $this->nom = $nom;
+        $this->forsa = $forsa;
+        $this->defensa = $defensa;
     }
 
     public function getNom(): string{
