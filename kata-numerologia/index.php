@@ -1,21 +1,31 @@
 <?php
 echo "Aquest programa et diu el significat en numerologia d'un número donat. \n";
-echo 'Si us plau, introdueix un número: '; // 123, 542
-$num = readline();                   // trim(fgets(STDIN));
+echo "Si us plau, introdueix un número: \n"; // 123, 542
+$num = readline();                                       // trim(fgets(STDIN));
 
 echo "El número ". $num. " significa: ". calcularSignificat($num);
 
  function calcularSignificat($num): string{
-    $resposta = "";
-  
-    $numeros = str_split($num);   
+    
+    $suma = reduirAUnNumero($num);
+    $resposta = obtenirSignificat($suma);
 
+    return $resposta;
+ }
+
+ function reduirAUnNumero($num): int{
+
+    $numeros = str_split($num);
     $suma = array_sum($numeros);
 
     while ($suma >=10) {
         $suma2 = str_split($suma);  
         $suma = array_sum($suma2);  
-    }  
+    } 
+     return $suma;
+ }
+
+function obtenirSignificat($suma): string{
     switch ($suma){
         case 0:
             $resposta = "el tot";
