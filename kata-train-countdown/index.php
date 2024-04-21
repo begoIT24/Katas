@@ -1,5 +1,5 @@
 <?php
-echo "Per salvar la visa has d'intentar frenar aquest tren introduint 10 números! \n";
+echo "Per salvar la vida has d'intentar frenar aquest tren introduint 10 números! \n";
 for ($i = 0; $i < 10; $i++) {
     echo "Introdueix un número: " ;
     $num = (int)readline();
