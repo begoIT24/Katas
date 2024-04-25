@@ -20,11 +20,11 @@ class Guerrer extends Jugador {
      }
 
      public function moveRight ($posX) {
-        $posY = $posX + 2;
+        $posX = $posX + 2;
      }
 
      public function moveLeft ($posX) {
-        $posY = $posX - 2;
+        $posX= $posX - 2;
      }
 
 
