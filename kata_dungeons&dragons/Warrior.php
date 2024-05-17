@@ -17,7 +17,7 @@ class Warrior extends Player
 
    public function attackWithWeapon()
    {
-      return "The warrior $this->name attacks with the $this->weapon";
+      return "The warrior $this->name attacks with the $this->weapon!";
    }
 
    public function move($direction, int $step = 2)
