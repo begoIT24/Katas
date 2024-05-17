@@ -21,7 +21,8 @@ class Warrior extends Player
    }
 
    public function move($direction, int $step = 2)
-   {
+   {      
+      echo "$this->name is going to run. \n";
       switch ($direction) {
          case 'up':
             if ($this->posY < self::MAX_POS) {

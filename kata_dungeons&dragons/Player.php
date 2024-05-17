@@ -17,6 +17,7 @@ class Player
 
    public function move($direction, int $step = 1)
    {
+      echo "$this->name is going to move. \n";
       switch ($direction) {
          case 'up':
             if ($this->posY < self::MAX_POS) {
