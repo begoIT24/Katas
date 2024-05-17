@@ -15,38 +15,38 @@ class Player
       $this->posY = $posY;
    }
 
-   public function move($direction)
+   public function move($direction, int $step = 1)
    {
       switch ($direction) {
          case 'up':
             if ($this->posY < self::MAX_POS) {
-               $this->posY++;
+               $this->posY += $step;
             } else {
                return "You can't move up";
             }
             break;
          case 'down':
             if ($this->posY > self::MIN_POS) {
-               $this->posY--;
+               $this->posY -= $step;
             } else {
                return "You can't move down";
             }
             break;
          case 'left':
             if ($this->posX > self::MIN_POS) {
-               $this->posX--;
+               $this->posX -= $step;
             } else {
                return "You can't move to the left";
             }
             break;
          case 'right':
             if ($this->posX < self::MAX_POS) {
-               $this->posX++;
+               $this->posX += $step;
             } else {
                return "You can't move to the right";
             }
             break;
       }
-      return "You have moved to the position ($this->posX, $this->posY)";
+      return "You moved to the position ($this->posX, $this->posY)";
    }
 }
