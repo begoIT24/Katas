@@ -7,6 +7,8 @@ class Player
    protected int $posY;
    protected const MAX_POS = 9;
    protected const MIN_POS = 0;
+   protected const STEP = 1;
+
 
    public function __construct($name, $posX, $posY)
    {
@@ -15,33 +17,38 @@ class Player
       $this->posY = $posY;
    }
 
-   public function move($direction, int $step = 1)
+   public function walk($direction)
+   {
+      return $this->move($direction, self::STEP);
+   }
+
+   public function move($direction, $step)
    {
       echo "$this->name is going to move. \n";
       switch ($direction) {
          case 'up':
-            if ($this->posY < self::MAX_POS) {
+            if (($this->posY + $step) <= self::MAX_POS) {
                $this->posY += $step;
             } else {
                return "You can't move up";
             }
             break;
          case 'down':
-            if ($this->posY > self::MIN_POS) {
+            if (($this->posY - $step) >= self::MIN_POS) {
                $this->posY -= $step;
             } else {
                return "You can't move down";
             }
             break;
          case 'left':
-            if ($this->posX > self::MIN_POS) {
+            if (($this->posX - $step) >= self::MIN_POS) {
                $this->posX -= $step;
             } else {
                return "You can't move to the left";
             }
             break;
          case 'right':
-            if ($this->posX < self::MAX_POS) {
+            if (($this->posX + $step) <= self::MAX_POS) {
                $this->posX += $step;
             } else {
                return "You can't move to the right";
