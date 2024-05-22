@@ -22,7 +22,7 @@ class Player
       return $this->move($direction, self::STEP);
    }
 
-   public function move($direction, $step)
+   protected function move($direction, $step)
    {
       echo "$this->name is going to move. \n";
       switch ($direction) {
